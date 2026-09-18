@@ -116,11 +116,3 @@
         }
     }
 }
-
-body {
-    max-inline-size: 48rem;
-    margin-inline: auto;
-    padding: 2rem;
-    font-size: 1rem/1.6;
-    font-family:  system-ui, sans-serif;
-}

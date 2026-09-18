@@ -27,6 +27,7 @@ export default class Scribe {
         this.el.setAttribute('role', 'textbox');
         this.el.setAttribute('aria-multiline', 'true');
         this.el.setAttribute('aria-placeholder', this.config.placeholder);
+        this.el.setAttribute('data-scribe-editor', '');
         this.el.dataset.placeholder = this.config.placeholder;
 
         this.el.addEventListener('input', () => {
@@ -61,6 +62,22 @@ export default class Scribe {
         if (this.config.toolbar) {
             this.createToolbar();
         }
+
+        this.container = document.createElement('div');
+        this.container.className = 'scribe-container';
+
+        this.container.className = 'scribe-container';
+        this.container.setAttribute('data-scribe-container', '');
+
+        // Insert the wrapper before the toolbar, or editor if there is no toolbar.
+        const firstElement = this.toolbar ?? this.el;
+        firstElement.before(this.container);
+
+        if (this.toolbar) {
+            this.container.append(this.toolbar);
+        }
+
+        this.container.append(this.el);
 
         this.update();
     }
@@ -102,6 +119,16 @@ export default class Scribe {
             `]
         ]);
 
+        const optionNames = new Map([
+            [Scribe.Bold, 'bold'],
+            [Scribe.Italic, 'italic'],
+            [Scribe.List.Unordered, 'unordered'],
+            [Scribe.List.Ordered, 'ordered'],
+            [Scribe.Indent, 'indent'],
+            [Scribe.Link, 'link'],
+            [Scribe.Clear, 'clear']
+        ]);
+
         const formats = this.config.toolbar === true
             ? [...options.keys()]
             : this.config.toolbar.options ?? [...options.keys()];
@@ -128,7 +155,7 @@ export default class Scribe {
 
             button.type = 'button';
             button.dataset.format = format;
-            // button.textContent = options.get(format);
+            button.dataset.scribeOption = optionNames.get(format);
 
             const label = options.get(format);
             const icon = icons.get(format);
