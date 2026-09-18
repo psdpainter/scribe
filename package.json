@@ -1,0 +1,24 @@
+{
+  "name": "scribe",
+  "version": "1.0.0",
+  "description": "Scribe is a lightweight, dependency-free rich text editor built with vanilla JavaScript. Turn a div into an editable canvas with a configurable toolbar, essential formatting, and simple CSS overrides.",
+  "main": "scribe.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild scribe.js --minify --format=esm --outfile=scribe.min.js && esbuild scribe.css --minify --outfile=scribe.min.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psdpainter/scribe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psdpainter/scribe/issues"
+  },
+  "homepage": "https://github.com/psdpainter/scribe#readme",
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
