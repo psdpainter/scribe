@@ -48,6 +48,17 @@ const editor = new Scribe('#editor', {
 
 Options appear in the order you provide them. Leave out `toolbar`, or set it to `false`, for an editor without a toolbar.
 
+Set `iconWidth` to a number in pixels to size the toolbar icons:
+
+```js
+const editor = new Scribe('#editor', {
+    toolbar: true,
+    iconWidth: 20
+});
+```
+
+The default is 24px. Values below 16 are clamped to 16px, and values above 32 are clamped to 32px. Invalid values use the default. Icon height matches the width to preserve the square proportions.
+
 ## Writing and formatting
 
 - **Bold and italic:** format selected text, or the whole editor when nothing is selected.
